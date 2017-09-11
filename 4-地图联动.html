@@ -12,34 +12,35 @@
     <link rel="stylesheet" href="css/ol.css">
 </head>
 <body>
-<!--通过id进行地图绑定-->
 <p>地图1</p>
 <div id="map1" style="width: 20%;height: 50%;"></div>
 <p>地图2</p>
 <div id="map2" style="width: 20%;height: 50%;"></div>
 <script>
+    // 创建一个视图
+
+//    OpenLayers 3采用了MVC模型，V对应的就是View，这种设计模型有什么好处？
+    // 我们还是直接看下面这两个地图：
+    var view = new ol.View({
+        center: [0, 0],
+        zoom: 2
+    });
+
     // 创建第一个地图
     new ol.Map({
         layers: [
             new ol.layer.Tile({source: new ol.source.OSM()})
         ],
-        view: new ol.View({
-            center: [0, 0],
-            zoom: 2
-        }),
+        view: view,
         target: 'map1'
     });
-
 
     // 创建第二个地图
     new ol.Map({
         layers: [
             new ol.layer.Tile({source: new ol.source.OSM()})
         ],
-        view: new ol.View({
-            center: [0, 0],
-            zoom: 2
-        }),
+        view: view,
         target: 'map2'
     });
 </script>

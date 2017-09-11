@@ -12,14 +12,17 @@
     <link rel="stylesheet" href="css/ol.css">
 </head>
 <body>
-<!--通过id进行地图绑定-->
 <p>地图1</p>
 <div id="map1" style="width: 20%;height: 50%;"></div>
 <p>地图2</p>
 <div id="map2" style="width: 20%;height: 50%;"></div>
+<input type="button" onClick="swapMap();" value="调换地图" />
 <script>
+
+//    在创建地图时，我们可以指定对应的地图容器，其实在创建完成之后，我们还可以动态设置不同的地图容器
+// 从而可以让地图不断的变换位置，比如交换两个地图
     // 创建第一个地图
-    new ol.Map({
+    var map1 = new ol.Map({
         layers: [
             new ol.layer.Tile({source: new ol.source.OSM()})
         ],
@@ -30,9 +33,8 @@
         target: 'map1'
     });
 
-
     // 创建第二个地图
-    new ol.Map({
+    var map2 = new ol.Map({
         layers: [
             new ol.layer.Tile({source: new ol.source.OSM()})
         ],
@@ -42,7 +44,16 @@
         }),
         target: 'map2'
     });
-</script>
 
+    var i = 1;
+    if(i % 2 == 0){
+
+    }
+    function swapMap() {
+        // 改变两个地图的容器
+        map1.setTarget('map2');
+        map2.setTarget('map1');
+    }
+</script>
 </body>
 </html>
