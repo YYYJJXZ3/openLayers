@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta content=always name=referrer>
+    <title>OpenLayers 3</title>
+
+    <script src="js/ol-debug.js"></script>
+    <script src="js/ol.js"></script>
+    <script src="js/polyfill.min.js"></script>
+    <link rel="stylesheet" href="css/ol.css">
+</head>
+<body>
+<div id="map" style="width: 100%;height: 400px"></div>
+<script>
+
+
+    new ol.Map({
+//        取消右下角的i，变成展开的一串信息
+        controls: ol.control.defaults({
+            attributionOptions: ({
+                collapsible: false
+            })
+        }),
+        // logo: false,     // 不显示logo
+        // logo: 'face_monkey.png',     // 用一个图片 face_monkey.png 作为logo
+        logo: {src: 'image/face_monkey.png', href: 'http://www.openstreetmap.org/'},    // 点击能跳转到对应页面
+        layers: [
+            new ol.layer.Tile({source: new ol.source.OSM()})
+        ],
+        view: new ol.View({
+            center: [0, 0],
+            zoom: 2
+        }),
+        target: 'map'
+    });
+</script>
+</body>
+</html>
