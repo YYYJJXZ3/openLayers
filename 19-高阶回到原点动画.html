@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta content=always name=referrer>
+    <title>OpenLayers 3</title>
+
+    <script src="js/ol-debug.js"></script>
+    <script src="js/ol.js"></script>
+    <script src="js/polyfill.min.js"></script>
+    <link rel="stylesheet" href="css/ol.css">
+</head>
+<body>
+<div id="map2" style="width: 100%"></div>
+<input type="button" value="回到原点" onclick="backWithAnim2();">
+<script type="text/javascript">
+    var map2 = new ol.Map({
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            })
+        ],
+        target: 'map2',
+        view: new ol.View({
+            center: ol.proj.transform(
+                [104, 30], 'EPSG:4326', 'EPSG:3857'),
+            zoom: 10
+        })
+    });
+
+    // sin曲线动画
+    function sin(t) {
+        // 使用sin曲线公式
+        return Math.sin(t * Math.PI / 2);
+    }
+
+    function backWithAnim2() {
+        var pan = ol.animation.pan({
+            duration: 2000,
+            source: map2.getView().getCenter(),
+            easing: sin // 应用sin曲线动画
+        });
+        map2.beforeRender(pan);
+        map2.getView().setCenter(ol.proj.transform([104, 30], 'EPSG:4326', 'EPSG:3857'));
+    }
+
+</script>
+</body>
+</html>

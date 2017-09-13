@@ -13,11 +13,18 @@
 </head>
 <body>
 <div id="map" style="width: 100%"></div>
-<input type="button" value="显示成都" onclick="fitToChengdu();" />
 <script>
+    // Open Street Map 地图层
+    var openStreetMapLayer = new ol.layer.Tile({
+        source: new ol.source.XYZ({
+            url: 'http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        })
+    });
+
+    // 创建地图
     var map = new ol.Map({
         layers: [
-            new ol.layer.Tile({source: new ol.source.OSM()})
+            openStreetMapLayer
         ],
         view: new ol.View({
             // 设置成都为地图中心
@@ -27,10 +34,6 @@
         }),
         target: 'map'
     });
-    function fitToChengdu() {
-        // 让地图最大化完全地显示区域[104, 30.6, 104.12, 30.74]
-        map.getView().fit([104, 30.6, 104.12, 30.74], map.getSize());
-    }
 </script>
 </body>
 </html>
